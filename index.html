@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sajid Razzaq Advocate | Law Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #181818; /* Black */
+      --accent: #444444;  /* Dark Grey */
+      --matte: #232323;   /* Matte Black */
+      --bg: #f5f5f5;      /* Light Grey */
+      --text: #232323;
+      --white: #fff;
+      --shadow: 0 8px 32px 0 rgba(34,34,34,0.13);
+      --glass: rgba(255,255,255,0.18);
+      --blur: blur(12px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg) 60%, var(--accent) 100%);
+      color: var(--primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw 1.2rem 5vw;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: var(--blur);
+      border-bottom: 1.5px solid var(--accent);
+      border-radius: 0 0 24px 24px;
+      margin-bottom: -1px;
+      transition: background 0.3s;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #23232333;
+      user-select: none;
+    }
+    .logo svg {
+      width: 56px;
+      height: 56px;
+      animation: logoPulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes logoPulse {
+      0% { filter: drop-shadow(0 0 0 var(--accent)); }
+      100% { filter: drop-shadow(0 0 16px var(--accent)); }
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      background: 
+        linear-gradient(120deg, rgba(24,24,24,0.55) 60%, rgba(35,35,35,0.45) 100%),
+        url('hero.jpg') center center/cover no-repeat,
+        url('main.jpg') center center/cover no-repeat;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      animation: fadeInDown 1.2s cubic-bezier(.77,0,.18,1) 0.2s both;
+      color: var(--white);
+      text-shadow: 0 2px 12px #23232388;
+    }
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 1.2s cubic-bezier(.77,0,.18,1) 0.5s both;
+      color: var(--bg);
+      text-shadow: 0 2px 8px #18181888;
+    }
+    .hero .cta {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 1.1rem 2.7rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 32px;
+      box-shadow: 0 4px 16px #23232333;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 1s both;
+    }
+    .hero .cta:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+    /* Animated SVG waves for hero */
+    .hero-waves {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      width: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-waves path {
+      animation: waveMove 12s linear infinite alternate;
+    }
+    @keyframes waveMove {
+      0% { d: path('M0,80 Q160,120 320,80 T640,80 V160 H0 Z'); }
+      100% { d: path('M0,80 Q160,40 320,80 T640,80 V160 H0 Z'); }
+    }
+    .floating-scales {
+      position: absolute;
+      left: 50%;
+      top: 80%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0.10;
+      pointer-events: none;
+      animation: floatScales 8s ease-in-out infinite alternate;
+    }
+    @keyframes floatScales {
+      0% { transform: translate(-50%, -50%) scale(1) rotate(-8deg); }
+      100% { transform: translate(-50%, -60%) scale(1.15) rotate(8deg); }
+    }
+    section {
+      padding: 4rem 5vw;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(.77,0,.18,1), transform 1s cubic-bezier(.77,0,.18,1);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 4px 24px #23232333;
+      margin-bottom: 1rem;
+      background: var(--white);
+    }
+    .profile h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      font-family: 'Playfair Display', serif;
+    }
+    .profile p {
+      font-size: 1.1rem;
+      color: var(--accent);
+      max-width: 600px;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      border: 1.5px solid var(--accent);
+      z-index: 1;
+    }
+    .service-card.criminal-law {
+      background: none;
+    }
+    .service-card.criminal-law .card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('criminal.jpeg') center center/cover no-repeat;
+      filter: blur(4px) brightness(0.7) saturate(1.1);
+      opacity: 0.85;
+      transition: filter 0.3s;
+      pointer-events: none;
+      animation: bgMotion 8s ease-in-out infinite alternate;
+    }
+    @keyframes bgMotion {
+      0% { transform: scale(1) translateX(0); }
+      100% { transform: scale(1.05) translateX(10px); }
+    }
+    .service-card.criminal-law > *:not(.card-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card.civil-law {
+      background: none;
+    }
+    .service-card.civil-law .card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('civil.jpeg') center center/cover no-repeat;
+      filter: blur(2px) brightness(0.7) saturate(1.1);
+      opacity: 0.85;
+      transition: filter 0.3s;
+      pointer-events: none;
+      animation: bgMotion 8s ease-in-out infinite alternate;
+    }
+    .service-card.civil-law > *:not(.card-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card.family-law {
+      background: none;
+    }
+    .service-card.family-law .card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('fam.jpeg') center center/cover no-repeat;
+      filter: blur(2px) brightness(0.7) saturate(1.1);
+      opacity: 0.85;
+      transition: filter 0.3s;
+      pointer-events: none;
+      animation: bgMotion 8s ease-in-out infinite alternate;
+    }
+    .service-card.family-law > *:not(.card-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card.corporate-law {
+      background: none;
+    }
+    .service-card.corporate-law .card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('corp.jpeg') center center/cover no-repeat;
+      filter: blur(2px) brightness(0.7) saturate(1.1);
+      opacity: 0.85;
+      transition: filter 0.3s;
+      pointer-events: none;
+      animation: bgMotion 8s ease-in-out infinite alternate;
+    }
+    .service-card.corporate-law > *:not(.card-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card.all-legal-services {
+      background: none;
+    }
+    .service-card.all-legal-services .card-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('all_legal.jpeg') center center/cover no-repeat;
+      filter: blur(2px) brightness(0.7) saturate(1.1);
+      opacity: 0.85;
+      transition: filter 0.3s;
+      pointer-events: none;
+      animation: bgMotion 8s ease-in-out infinite alternate;
+    }
+    .service-card.all-legal-services > *:not(.card-bg) {
+      position: relative;
+      z-index: 1;
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.05) rotate(-1deg);
+      box-shadow: 0 12px 32px #23232322;
+      background: linear-gradient(120deg, var(--bg) 60%, var(--accent) 100%);
+    }
+    .service-card svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      fill: var(--accent);
+      transition: fill 0.2s;
+    }
+    .service-card:hover svg {
+      fill: var(--primary);
+    }
+    .service-card h3 {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px #232323cc;
+    }
+    .service-card p {
+      font-size: 1rem;
+      color: var(--white);
+      text-shadow: 0 2px 8px #232323cc;
+    }
+    /* Testimonial carousel */
+    .testimonials {
+      margin: 4rem auto 0 auto;
+      max-width: 700px;
+      background: var(--glass);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      backdrop-filter: var(--blur);
+      border: 1.5px solid var(--accent);
+    }
+    .testimonial {
+      display: none;
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-style: italic;
+      min-height: 80px;
+      transition: opacity 0.5s;
+    }
+    .testimonial.active {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) both;
+    }
+    .testimonial-author {
+      margin-top: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-style: normal;
+    }
+    .testimonial-nav {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .testimonial-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.2s, background 0.2s;
+      border: 2px solid var(--accent);
+    }
+    .testimonial-dot.active {
+      opacity: 1;
+      background: var(--accent);
+    }
+    .contact {
+      background: var(--matte);
+      color: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin-top: 3rem;
+      animation: fadeIn 1.5s cubic-bezier(.77,0,.18,1) 0.2s both;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+    }
+    .contact p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--bg);
+    }
+    .contact a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 32px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px #23232333;
+      transition: background 0.2s, color 0.2s;
+      margin: 0.5rem 0.5rem 0 0.5rem;
+    }
+    .contact a:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .contact-animated {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .contact-animated svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--accent);
+      filter: drop-shadow(0 2px 8px var(--primary));
+      animation: iconBounce 2s infinite alternate;
+    }
+    @keyframes iconBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px) scale(1.1); }
+    }
+    .whatsapp-btn {
+      position: fixed;
+      right: 2vw;
+      bottom: 2vw;
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px #23232333;
+      z-index: 100;
+      font-size: 2rem;
+      transition: background 0.2s, transform 0.2s;
+      animation: bounceIn 1.2s cubic-bezier(.77,0,.18,1) 2s both;
+    }
+    .whatsapp-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: scale(1.1);
+    }
+    @keyframes bounceIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      60% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(90deg, var(--white) 0%, var(--bg) 100%);
+      padding: 3.5rem 5vw 3.5rem 5vw;
+      margin: 0 auto 2.5rem auto;
+      max-width: 1100px;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px #23232311;
+      position: relative;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+      width: 100%;
+      justify-items: center;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 4px 24px #23232322;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      min-width: 150px;
+      min-height: 120px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+    }
+    .stat:hover {
+      transform: scale(1.06) rotate(-1deg);
+      box-shadow: 0 8px 32px #23232333;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px #23232333;
+      transition: color 0.2s;
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .stat {
+        min-width: 0;
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+      }
+    }
+    @media (max-width: 700px) {
+      header { flex-direction: column; gap: 1rem; }
+      .hero h1 { font-size: 2.1rem; }
+      .hero p { font-size: 1.1rem; }
+      section { padding: 2.5rem 3vw; }
+      .profile h2, .contact h2 { font-size: 1.3rem; }
+      .contact-animated { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 64 64" fill="none">
+        <!-- Outer gold circle -->
+        <circle cx="32" cy="32" r="30" fill="var(--accent)" stroke="var(--primary)" stroke-width="3"/>
+        <!-- Scales of justice: crimson and black -->
+        <g>
+          <rect x="29" y="16" width="6" height="22" rx="3" fill="var(--primary)"/>
+          <line x1="32" y1="16" x2="20" y2="32" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="32" y1="16" x2="44" y2="32" stroke="var(--accent)" stroke-width="2"/>
+          <ellipse cx="20" cy="36" rx="6" ry="2.5" fill="var(--primary)" stroke="var(--accent)" stroke-width="2"/>
+          <ellipse cx="44" cy="36" rx="6" ry="2.5" fill="var(--primary)" stroke="var(--accent)" stroke-width="2"/>
+        </g>
+        <!-- SR Monogram: S in crimson, R in black, both with gold shadow -->
+        <text x="32" y="30" text-anchor="middle" font-size="16" font-family="Playfair Display, serif" fill="var(--accent)" font-weight="bold" style="text-shadow:0 2px 6px var(--accent);">S</text>
+        <text x="32" y="48" text-anchor="middle" font-size="18" font-family="Playfair Display, serif" fill="var(--primary)" font-weight="bold" style="text-shadow:0 2px 6px var(--accent);">R</text>
+      </svg>
+      Sajid Razzaq
+    </div>
+    <nav>
+      <a href="#profile">Profile</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <section class="hero">
+    <h1>Justice. Integrity. Experience.</h1>
+    <p>25+ Years of Legal Excellence in Faisalabad & High Court Advocacy</p>
+    <a href="#contact" class="cta">Get Consultation</a>
+    <!-- Animated SVG waves -->
+    <svg class="hero-waves" viewBox="0 0 1440 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 Q360,120 720,80 T1440,80 V160 H0 Z" fill="var(--bg)" opacity="0.7">
+        <animate attributeName="d" dur="8s" repeatCount="indefinite"
+          values="M0,80 Q360,120 720,80 T1440,80 V160 H0 Z;M0,80 Q360,40 720,80 T1440,80 V160 H0 Z;M0,80 Q360,120 720,80 T1440,80 V160 H0 Z" />
+      </path>
+      <path d="M0,100 Q360,140 720,100 T1440,100 V160 H0 Z" fill="var(--accent)" opacity="0.3">
+        <animate attributeName="d" dur="10s" repeatCount="indefinite"
+          values="M0,100 Q360,140 720,100 T1440,100 V160 H0 Z;M0,100 Q360,60 720,100 T1440,100 V160 H0 Z;M0,100 Q360,140 720,100 T1440,100 V160 H0 Z" />
+      </path>
+    </svg>
+  </section>
+  <!-- Profile (bio) section remains above services -->
+  <section id="profile" class="profile">
+    <img src="https://api.dicebear.com/7.x/initials/svg?seed=SR&backgroundColor=ffd600&textColor=1a237e" alt="Sajid Razzaq" />
+    <h2>Sajid Razzaq Advocate</h2>
+    <p>
+      With over 25 years of distinguished legal practice, Sajid Razzaq is a trusted advocate in Faisalabad and a licensed High Court lawyer. Renowned for his unwavering commitment to justice, integrity, and client success, he offers expert legal counsel across all areas of law. Whether you seek guidance for civil, criminal, family, or corporate matters, you are in experienced hands.
+    </p>
+  </section>
+  <!-- About section -->
+  <section id="bio" style="background:#f8f8f8; padding:2em; border-radius:8px; max-width:700px; margin:auto;">
+    <h2>About</h2>
+    <p>
+      <strong>Current Position:</strong><br>
+      Legal Consultant / Advisor at HS Crete Pvt Ltd (March 31, 2024 - Present)
+    </p>
+    <p>
+      <strong>Previous Experience:</strong><br>
+      Legal Advisor / Consultant at Reckon Chemicals (Pvt.) Ltd<br>
+      Legal Advisor / Consultant at YMC Apparel & Textiles (Pvt.) Ltd<br>
+      Advocate at Lahore High Court<br>
+      Advocate at DBA, Faisalabad<br>
+      Former Legal Advisor at Signature by Eram<br>
+      Worked at YMC Apparel & Textiles (Pvt.) Ltd
+    </p>
+    <p>
+      <strong>Education:</strong><br>
+      Studied at PULC - Punjab University Law College<br>
+      Studied at Mohsin Wardag - MW
+    </p>
+    <p>
+      <strong>Places Lived:</strong><br>
+      Islamabad, Pakistan (Current City)<br>
+      Faisalabad (Hometown)
+    </p>
+    <div style="margin-top:2.5em; text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:2rem; color:#181818; margin-bottom:1em;">MIAN SAJID ADVOCATE</h3>
+      <img src="mian.jpg" alt="Mian Sajid Advocate" style="max-width:100%; border-radius:16px; box-shadow:0 4px 24px #23232333;">
+    </div>
+  </section>
+  <!-- Legal Services section remains here -->
+  <section id="services">
+    <h2 style="text-align:center; font-family:'Playfair Display',serif; color:var(--primary); margin-bottom:2rem;">Legal Services</h2>
+    <div class="services">
+      <div class="service-card criminal-law">
+        <div class="card-bg"></div>
+        <!-- Gavel Icon for Criminal Case -->
+        <svg viewBox="0 0 48 48" fill="none"><rect x="30" y="8" width="6" height="20" rx="2" fill="var(--white)"/><rect x="12" y="28" width="24" height="6" rx="2" fill="var(--white)"/><rect x="8" y="36" width="32" height="4" rx="2" fill="var(--white)"/></svg>
+        <h3>Criminal Case</h3>
+        <p>Expert defense and prosecution in criminal cases, ensuring justice and fair representation.</p>
+      </div>
+      <div class="service-card civil-law">
+        <div class="card-bg"></div>
+        <!-- Scales Icon for Civil Case -->
+        <svg viewBox="0 0 48 48" fill="none"><rect x="22" y="10" width="4" height="20" rx="2" fill="var(--white)"/><line x1="24" y1="10" x2="14" y2="28" stroke="var(--white)" stroke-width="2"/><line x1="24" y1="10" x2="34" y2="28" stroke="var(--white)" stroke-width="2"/><ellipse cx="14" cy="32" rx="6" ry="2.5" fill="var(--white)"/><ellipse cx="34" cy="32" rx="6" ry="2.5" fill="var(--white)"/></svg>
+        <h3>Civil Case</h3>
+        <p>Resolving disputes, property, contracts, and all civil matters with professionalism and care.</p>
+      </div>
+      <div class="service-card family-law">
+        <div class="card-bg"></div>
+        <!-- Family Icon for Family Case -->
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="16" cy="28" r="6" fill="var(--white)"/><circle cx="32" cy="28" r="6" fill="var(--white)"/><circle cx="24" cy="18" r="7" fill="var(--white)"/></svg>
+        <h3>Family Case</h3>
+        <p>Guidance in family matters: marriage, divorce, custody, inheritance, and more.</p>
+      </div>
+      <div class="service-card corporate-law">
+        <div class="card-bg"></div>
+        <!-- Briefcase Icon for Corporate Case -->
+        <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="18" width="28" height="16" rx="4" fill="var(--white)"/><rect x="18" y="12" width="12" height="6" rx="2" fill="var(--white)"/></svg>
+        <h3>Corporate Case</h3>
+        <p>Business formation, contracts, compliance, and dispute resolution for companies.</p>
+      </div>
+      <div class="service-card legal-advisory">
+        <div class="card-bg" style="
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: url('adv.jpeg') center center/cover no-repeat;
+          filter: blur(2px) brightness(0.7) saturate(1.1);
+          opacity: 0.85;
+          transition: filter 0.3s;
+          pointer-events: none;
+          animation: bgMotion 8s ease-in-out infinite alternate;
+        "></div>
+        <div style="
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: rgba(34,34,34,0.55);
+          pointer-events: none;
+          border-radius: 24px;
+        "></div>
+        <!-- Lightbulb Icon for Legal Advisory -->
+        <svg style="position: relative; z-index: 2;" viewBox="0 0 48 48" fill="none">
+          <ellipse cx="24" cy="24" rx="10" ry="12" fill="var(--white)" opacity="0.9"/>
+          <rect x="20" y="36" width="8" height="4" rx="2" fill="var(--white)"/>
+          <rect x="22" y="40" width="4" height="4" rx="2" fill="var(--white)"/>
+        </svg>
+        <h3 style="position: relative; z-index: 2; text-shadow: 0 2px 12px #232323cc;">Legal Advisory</h3>
+        <p style="position: relative; z-index: 2; text-shadow: 0 2px 12px #232323cc;">
+          Professional legal advice and guidance for individuals and businesses on all legal matters.
+        </p>
+      </div>
+      <div class="service-card all-legal-services">
+        <div class="card-bg"></div>
+        <svg viewBox="0 0 48 48"><rect x="12" y="12" width="24" height="24" rx="6"/><path d="M24 18v12" stroke="var(--accent)" stroke-width="2"/><circle cx="24" cy="30" r="2" fill="var(--accent)"/></svg>
+        <h3>All Legal Services</h3>
+        <p>Comprehensive legal solutions for every need. Your justice, our mission.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Statistics section moved below services -->
+  <h2 style="text-align:center; font-family:'Playfair Display',serif; color:var(--primary); margin-bottom:1.2rem; font-size:2rem; letter-spacing:1px;">Key Statistics of Mian Sajid Razzaq - Best Lawyer in Lahore & Faisalabad</h2>
+  <section class="stats-section" id="stats">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-number" data-target="25">0+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="9500">0+</div>
+        <div class="stat-label">Successful Cases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="15000">0+</div>
+        <div class="stat-label">Satisfied Clients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-target="12000">0+</div>
+        <div class="stat-label">Court Appearances</div>
+      </div>
+    </div>
+  </section>
+  <!-- Office Location section -->
+  <div style="max-width:900px;margin:2.5rem auto 0 auto;padding:2rem;background:#fff;border-radius:18px;box-shadow:0 4px 24px #23232311;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#181818;margin-bottom:1em;text-align:center;">
+      Office Location (FAISALABAD)
+    </h2>
+    <div style="text-align:center;margin-bottom:1em;">
+      <strong>31°25'23.9"N 73°04'49.6"E</strong>
+    </div>
+    <div style="width:100%;height:340px;overflow:hidden;border-radius:12px;box-shadow:0 2px 12px #23232322;">
+      <iframe
+        width="100%"
+        height="340"
+        frameborder="0"
+        style="border:0"
+        src="https://www.google.com/maps?q=31.423306,73.080444&hl=en&z=16&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Ready to discuss your case? Call or WhatsApp now for a confidential consultation.</p>
+    <a href="tel:03085231023">Call: 0308-5231023</a>
+    <a href="https://wa.me/923085231023" target="_blank">WhatsApp: 0308-5231023</a>
+    <div class="contact-animated">
+      <svg viewBox="0 0 32 32"><path d="M16 6a10 10 0 0 0-8.7 14.9L6 26l5.3-1.3A10 10 0 1 0 16 6zm5.6 13.7c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.2-2.9-.6-2.4-.9-4-3.3-4.1-3.5-.1-.2-1-1.3-1-2.5s.6-1.8.8-2c.2-.2.4-.3.6-.3.2 0 .3 0 .5.4.2.4.7 1.3.8 1.4.1.1.1.2 0 .4-.1.2-.2.3-.3.5-.1.1-.2.2-.1.4.1.2.3.7.7 1.1.5.6 1 1 .9 1.1.1.1.2.1.4 0 .2-.1 1.1-.5 1.4-.7.3-.2.3-.2.5 0 .2.2.7.9.8 1.1.1.2.1.3.1.4z"/></svg>
+      <svg viewBox="0 0 32 32"><path d="M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm0 26c-6.627 0-12-5.373-12-12S9.373 4 16 4s12 5.373 12 12-5.373 12-12 12zm-1-17h2v6h-2zm0 8h2v2h-2z"/></svg>
+      <svg viewBox="0 0 32 32"><path d="M16 3C9.373 3 4 8.373 4 15c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm0 22c-5.523 0-10-4.477-10-10S10.477 5 16 5s10 4.477 10 10-4.477 10-10 10zm-1-9h2v6h-2zm0-8h2v2h-2z"/></svg>
+    </div>
+  </section>
+  <a class="whatsapp-btn" href="https://wa.me/923085231023" target="_blank" title="Chat on WhatsApp">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="var(--matte)"/><path d="M23.5 20.5c-.2.6-1.1 1.1-1.5 1.2-.4.1-.9.2-2.9-.6-2.4-.9-4-3.3-4.1-3.5-.1-.2-1-1.3-1-2.5s.6-1.8.8-2c.2-.2.4-.3.6-.3.2 0 .3 0 .5.4.2.4.7 1.3.8 1.4.1.1.1.2 0 .4-.1.2-.2.3-.3.5-.1.1-.2.2-.1.4.1.2.3.7.7 1.1.5.6 1 1 .9 1.1.1.1.2.1.4 0 .2-.1 1.1-.5 1.4-.7.3-.2.3-.2.5 0 .2.2.7.9.8 1.1.1.2.1.3.1.4z" fill="var(--white)"/></svg>
+  </a>
+  <script>
+    // Animate section entrances on scroll
+    function revealSections() {
+      document.querySelectorAll('section').forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          section.classList.add('visible');
+        }
+      });
+      document.querySelectorAll('.service-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          card.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    // Animated count-up for stats
+    function animateStats() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const duration = 1800;
+        const step = Math.ceil(target / (duration / 16));
+        function update() {
+          count += step;
+          if (count >= target) {
+            el.textContent = target.toLocaleString() + '+';
+          } else {
+            el.textContent = count.toLocaleString() + '+';
+            requestAnimationFrame(update);
+          }
+        }
+        update();
+      });
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      revealSections();
+      animateStats();
+    });
+  </script>
+</body>
+</html>
